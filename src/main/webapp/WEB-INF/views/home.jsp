@@ -9,5 +9,6 @@
 	login test
 </h1>
 	<a href='<c:url value="/member/login"/>'>로그인</a>
+	<a href='<c:url value="/member/join"/>'>회원가입</a>
 </body>
 </html>

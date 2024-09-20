@@ -9,24 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public String home() {
 		return "/home";//타일즈에서 /*로 했기 때문에 /를 붙임
 	}
 	
-	@GetMapping("/post/list")
-	public String postList() {
-		return "/home";
-	}
 
-	@GetMapping("/post/detail")
-	public String postDetail() {
-		return "/home";
-	}
-	
-	@GetMapping("/post/insert")
-	public String postInsert() {
-		return "/home";
-	}
 	
 }
