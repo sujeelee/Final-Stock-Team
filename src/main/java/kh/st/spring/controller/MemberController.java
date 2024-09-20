@@ -30,6 +30,6 @@ public class MemberController {
     	
     	System.out.println("입력받은 로그인 정보 : " + user_);
         log.info(user_);
-        return "/member/login";
+        return "/";
     }
 }
