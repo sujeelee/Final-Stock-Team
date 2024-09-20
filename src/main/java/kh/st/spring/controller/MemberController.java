@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.st.spring.model.dto.LoginDTO;
 import kh.st.spring.service.MemberService;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Controller
 @RequestMapping("/member")
 public class MemberController {
@@ -27,7 +29,7 @@ public class MemberController {
     public String login_post(Model mo, LoginDTO user_){
     	
     	System.out.println("입력받은 로그인 정보 : " + user_);
-
+        log.info(user_);
         return "/member/login";
     }
 }
