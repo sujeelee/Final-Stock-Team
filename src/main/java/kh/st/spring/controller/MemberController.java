@@ -25,6 +25,8 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login_post(Model mo, LoginDTO user_){
+    	
+    	System.out.println("입력받은 로그인 정보 : " + user_);
 
         return "/member/login";
     }

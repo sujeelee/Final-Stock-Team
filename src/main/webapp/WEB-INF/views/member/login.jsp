@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
 	<title>Login</title>
@@ -69,11 +69,11 @@
 <body>
     <div class="login-wrapper">
         <h2>Login</h2>
-        <form method="post" action="<c:url value="/member/login">" id="login-form">
-            <input type="text" name="userName" placeholder="Email">
-            <input type="password" name="userPassword" placeholder="Password">
+        <form method="post" action='<c:url value="/member/login"/>' id="login-form">
+            <input type="text" name="id" placeholder="Email">
+            <input type="password" name="pw" placeholder="Password">
             <label for="remember-check">
-                <input type="checkbox" id="remember-check">아이디 저장하기
+                <input type="checkbox" id="remember-check" name="re">아이디 기억하기
             </label>
             <input type="submit" value="Login">
         </form>
