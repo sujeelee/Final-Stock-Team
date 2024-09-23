@@ -26,7 +26,6 @@ public class MemberVO {
     private Date mb_out_date;
     private String mb_cookie;
     private int mb_point; //(11자리)
-    private int mb_email_ctr;
-     // 이메일 수집 동의 여부가 email과 같은 이름을 가지고 있어서 _ctr추가했습니당. tinyint친구 1, 0 받아올 것 같아서 일단 int로 두었습니다.
+    private byte mb_emailing;
     private String mb_account;
 }

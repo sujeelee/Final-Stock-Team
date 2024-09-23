@@ -1,5 +1,7 @@
 package kh.st.spring.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,15 +26,30 @@ public class MemberController {
     //로그인
     @GetMapping("/login")
     public String login(){
-
+        //화면 미구현
         return "/member/login";
     }
 
     @PostMapping("/login")
-    public String login_post(Model mo, LoginDTO user_){
-    	
+    public String login_post(Model mo, LoginDTO user_, HttpSession session){
+    	//화면에서 id, pw, re(자동로그인 여부 => on, null로 값이 전달됨) 가져옴
     	System.out.println("입력받은 로그인 정보 : " + user_);
-        log.info(user_);
+
+        //받은 정보를 DB에서 있는지 없는지 확인 함 
+        MemberVO user = memberService.login(user_);
+
+        //
+        if (user != null) {
+            
+        } else {
+
+        }
+
+
+
+
+
+        log.info(user);
         return "/home";
     }
     
@@ -40,7 +57,7 @@ public class MemberController {
     //회원가입
     @GetMapping("/join")
     public String join(){
-    	
+    	//화면 미구현
     	return "/member/join";
     }
     
