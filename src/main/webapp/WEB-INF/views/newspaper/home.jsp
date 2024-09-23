@@ -2,11 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
+<style type="text/css">
+
+</style>
 </head>
 <body>
 	<h1>뉴스 게시판</h1>
-	<div class="content">
-		
-	</div>
 </body>
 </html>
