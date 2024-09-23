@@ -11,6 +11,7 @@
 
     <main>
         <tiles:insertAttribute name="content" />
+        <tiles:insertAttribute name="sidebar" />
     </main>
 
     <footer>
