@@ -4,9 +4,9 @@
 <head>
 </head>
 <body>
-<h1>
-	뉴스 게시판
-</h1>
-
+	<h1>뉴스 게시판</h1>
+	<div class="content">
+		
+	</div>
 </body>
 </html>

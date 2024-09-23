@@ -12,16 +12,17 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
-@RequestMapping("/news")
+@RequestMapping("/newspaper")
 public class NewsController {
 
 	@Autowired
 	NewsService newsService;
 	
-	@GetMapping("/list/{ce_no}")
-	public String list(Model model, @PathVariable("ne_no")int ne_no) {
-		log.info("news/list:get");
+	@GetMapping("/list/{np_no}")
+	public String list(Model model, @PathVariable("np_no")int np_no) {
+		log.info("newspaper/list:get");
+		log.info(np_no);
 		
-		return "/news/list";
+		return "/newspaper/list";
 	}
 }
