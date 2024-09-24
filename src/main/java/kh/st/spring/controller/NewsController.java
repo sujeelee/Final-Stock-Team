@@ -1,6 +1,7 @@
 package kh.st.spring.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,14 @@ public class NewsController {
 	
 	@ResponseBody
 	@PostMapping("/views")
-	public Map<String, Object> views(@RequestBody NewsVO newsVo){
+	public Map<String, List<NewsVO>> views(@RequestBody NewsVO news){
 		log.info("newspaper/views:post");
-		log.info(newsVo);
-		Map<String, Object> map = new HashMap<String, Object>();
-		// 서비스에게 
-		
+		log.info(news);
+		Map<String, List<NewsVO>> map = new HashMap<String, List<NewsVO>>();
+		// 서비스에게 날짜를 주고 리스트를 가져옴
+		List<NewsVO> newsList = newsService.getNewsList(news.getNe_datetime());
+		log.info(newsList);
+		map.put("newsList", newsList);
 		return map;
 	}
 }

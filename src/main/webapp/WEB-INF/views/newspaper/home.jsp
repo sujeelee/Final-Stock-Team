@@ -208,10 +208,10 @@
 			} // 날짜, 기사, 버튼 활성화/비활성화를 업데이트 하는 함수
 			
 			function fetchNews(date){
-				let ne_dateTime = formatDate(date);
-				console.log(ne_dateTime);
+				let ne_datetime = formatDate(date);
+				console.log(ne_datetime);
 				let news = {
-					ne_dateTime : ne_dateTime
+					ne_datetime : ne_datetime
 				}
 				$.ajax({
 					async : true, // 비동기 : true(비동기), false(동기)
@@ -221,7 +221,7 @@
 					contentType : "application/json; charset=utf-8",
 					dataType : "json", 
 					success : function (data){
-						
+						displayNewsList(data.newsList);
 					}, 
 					error : function(jqXHR, textStatus, errorThrown){
 						console.log(jqXHR);
@@ -229,6 +229,36 @@
 				});
 			} // ajax 통신하여 기사를 가져오는 함수
 			
+			function displayNewsList(list){
+				if(list == null || list.length == 0){
+					$('.news-list').html('<li class="news-item text-center"><b>발행된 종이 신문이 없거나<br>신문게재 정보가 입력되지 않았습니다.</b></li>');
+					return;
+				}
+				let str = '';
+				for(news of list){
+					str += `
+						<li class="news-item">
+		                	<div class="news-box">
+			                    <div class="news-heading-box">
+			                    	// newspaper/list/{np_num}으로 보내주면됨
+			                        <a href="#">\${news.np_name}</a>
+			                    </div>
+			                    <div class="news-content-box">
+			                    	<div class="news-title">
+			                    		// newspaper/detail/{ne_num}으로 보내주면 됨
+			                    		<a href="#" style="font-size: 20px;">\${news.ne_title}</a>
+			                    	</div>
+			                    	<div class="news-content">
+			                    	    // newspaper/detail/{ne_num}으로 보내주면 됨
+				                        <a href="#">\${news.ne_content}</a>                   		
+			                    	</div>
+			                    </div>
+		                    </div>
+		                </li>
+					`;
+				}
+				$('.news-list').html(str);
+			} // 서버에서 가져온 데이터로 html을 새로 생성하는 함수
 			fetchNews(currentDate);
 			buttonStatus();
 		});
