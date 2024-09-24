@@ -10,4 +10,8 @@ public interface MemberDAO {
 
     void serUserCookie(@Param("user")MemberVO user);
     
+    void add_Fail_Number(@Param("id")String mb_id);
+    
+    void reset_Fail_Number(@Param("id")String mb_id);
+    
 }

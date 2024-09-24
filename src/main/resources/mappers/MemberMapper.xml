@@ -15,4 +15,19 @@
         mb_id = #{user.mb_id}
     </update>
 
+    <update id="add_Fail_Number">
+    update member
+    set
+        mb_fail = mb_fail + 1
+    where
+        mb_id = #{id}
+    </update>
+
+    <update id="reset_Fail_Number">
+    update member
+    set
+        mb_fail = 0
+    where
+        mb_id = #{id}
+    </update>
 </mapper>

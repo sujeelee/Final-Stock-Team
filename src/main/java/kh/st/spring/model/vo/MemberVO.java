@@ -18,7 +18,7 @@ public class MemberVO {
     private int mb_zip; //(11자리)
     private String mb_addr;
     private String mb_addr2;
-    private int mb_birth; //(11자리) 생일이 int로 ERD에 적혀있어서 그래도 했습니다.
+    private int mb_birth; //(11자리) 생일이 int로 ERD에 적혀있어서 일단 적혀있는 그대로 하였습니다.
     private int mb_level; //(11자리)
     private Date mb_datetime;
     private Date mb_edit_date;
@@ -28,6 +28,7 @@ public class MemberVO {
     private int mb_point; //(11자리)
     private byte mb_emailing;
     private String mb_account;
+    private int mb_fail; // ERD상 없긴한데 일단 만들어 두었습니다.
     private Date mb_cookie_limit; // DB에 datetime으로 저장되어 있습니다. (쿠키 만료기간)
     private boolean auto_login; // autoLogin, DB에는 없습니다. (re 가 on 일 경우 true 값이 들어옵니다.)
 }

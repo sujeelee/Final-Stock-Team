@@ -40,13 +40,13 @@ public class MemberServiceImp implements MemberService {
         }
         //입력한 비번이, 인코딩 된 비번과 일치하는지 확인
         if (passwordEncoder.matches(user_.getPw(), user.getMb_password())) {
-            //다 일치하면 fail 횟수 0
-            
+            //다 일치하면 fail 횟수 0 (String id 값을 넘겨주도록 하겠습니다.)
+            memberDao.reset_Fail_Number(user.getMb_id());
             //유저 반환
             return user;
         }
         //id는 있는데 비번이 불일치 되었을 시 fail + 1
-        
+        memberDao.add_Fail_Number(user.getMb_id());
 
         return null;
     }  

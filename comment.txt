@@ -2,3 +2,5 @@
  - 저도 잘 부탁드려요
 
 dispatcher 오류 나면 alt + f5 누르시고 업데이트 해주세용
+
+MemberVO 에 mb_fail 추가했습니다. DB 상은 없긴 한데 나중에 추가해보겠습니다.
