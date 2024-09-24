@@ -172,29 +172,24 @@
 			let today = new Date();
 			let currentDate = new Date(today);
 			
-			if(formatDate(currentDate) == formatDate(today)){
-				$('#next-date-btn').prop('disabled', true);
-			} // 초기상태 비교하여 버튼 비활성화
-			
-			$('#selected-date').text(formatDate(currentDate));
+			$('#selected-date').text(formatDate(currentDate).substr(0,7));
 			
 			function formatDate(date){
 				const year = date.getFullYear();
 				const month = (date.getMonth() + 1).toString().padStart(2, '0');
-				const yyyy_mm = `\${year}-\${month}`;
-				return yyyy_mm;
+				const day = '01';
+				const yyyy_mm_dd = `\${year}-\${month}-\${day}`;
+				return yyyy_mm_dd;
 			} // 날짜를 문자열로 포맷팅
 			
 			$('#prev-date-btn').click(function(){
 				currentDate.setMonth(currentDate.getMonth() - 1);
-				$('#selected-date').text(formatDate(currentDate));
-				buttonStatus();
+				update();
 			}); // 이전 버튼 클릭 이벤트
 			
 			$('#next-date-btn').click(function(){
 				currentDate.setMonth(currentDate.getMonth() + 1);
-				$('#selected-date').text(formatDate(currentDate));
-				buttonStatus();
+				update();
 				
 			}); // 다음 버튼 클릭 이벤트
 			
@@ -206,7 +201,36 @@
 				}
 			} // 현재 월을 넘어가지 못하게 하기위한 함수
 			
+			function update(){
+				$('#selected-date').text(formatDate(currentDate).substr(0,7));
+				fetchNews(currentDate);
+				buttonStatus();
+			} // 날짜, 기사, 버튼 활성화/비활성화를 업데이트 하는 함수
 			
+			function fetchNews(date){
+				let ne_dateTime = formatDate(date);
+				console.log(ne_dateTime);
+				let news = {
+					ne_dateTime : ne_dateTime
+				}
+				$.ajax({
+					async : true, // 비동기 : true(비동기), false(동기)
+					url : '<c:url value="/newspaper/views" />', 
+					type : 'post', 
+					data : JSON.stringify(news), 
+					contentType : "application/json; charset=utf-8",
+					dataType : "json", 
+					success : function (data){
+						
+					}, 
+					error : function(jqXHR, textStatus, errorThrown){
+						console.log(jqXHR);
+					}
+				});
+			} // ajax 통신하여 기사를 가져오는 함수
+			
+			fetchNews(currentDate);
+			buttonStatus();
 		});
 	</script>
 </body>
