@@ -172,6 +172,10 @@
 			let today = new Date();
 			let currentDate = new Date(today);
 			
+			if(formatDate(currentDate) == formatDate(today)){
+				$('#next-date-btn').prop('disabled', true);
+			} // 초기상태 비교하여 버튼 비활성화
+			
 			$('#selected-date').text(formatDate(currentDate));
 			
 			function formatDate(date){
@@ -184,12 +188,25 @@
 			$('#prev-date-btn').click(function(){
 				currentDate.setMonth(currentDate.getMonth() - 1);
 				$('#selected-date').text(formatDate(currentDate));
+				buttonStatus();
 			}); // 이전 버튼 클릭 이벤트
 			
 			$('#next-date-btn').click(function(){
 				currentDate.setMonth(currentDate.getMonth() + 1);
 				$('#selected-date').text(formatDate(currentDate));
+				buttonStatus();
+				
 			}); // 다음 버튼 클릭 이벤트
+			
+			function buttonStatus(){
+				if(formatDate(currentDate) == formatDate(today)){
+					$('#next-date-btn').prop('disabled', true);
+				}else{
+					$('#next-date-btn').prop('disabled', false);
+				}
+			} // 현재 월을 넘어가지 못하게 하기위한 함수
+			
+			
 		});
 	</script>
 </body>
