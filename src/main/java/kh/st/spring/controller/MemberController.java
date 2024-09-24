@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import kh.st.spring.model.dto.LoginDTO;
 import kh.st.spring.model.vo.MemberVO;
 import kh.st.spring.service.MemberService;
@@ -34,7 +35,8 @@ public class MemberController {
     public String login_post(Model mo, LoginDTO user_, HttpSession session){
     	//화면에서 id, pw, re(자동로그인 여부 => on, null로 값이 전달됨) 가져옴
     	System.out.println("입력받은 로그인 정보 : " + user_);
-
+		//Login_post와 순서 체크를 위한 디버깅 용 syso
+		System.out.println("login_post 메소드 입니다.");
         //받은 정보를 DB에서 있는지 없는지 확인 함 
         MemberVO user = memberService.login(user_);
 
@@ -48,7 +50,7 @@ public class MemberController {
 
             // fn loginSuccess 로그인 성공시 실패 카운트를 0으로 초기화 해주어야합니다.
 
-            //user_가 on 값을 가져온 경우
+            //user_가 on 값을 가져온 경우 *(null일때 오류가 난다면 수정해 주어야 할)
             if (user_.getRe().equals("on")) {
                 user.setAuto_login(true); //자동로그인 하겠습니다.
             } else {
@@ -61,7 +63,15 @@ public class MemberController {
         }
     }
     
-    
+    //로그아웃
+    @GetMapping("/logout")
+    public String logout(Model mo, HttpSession session){
+
+        MemberVO user = (MemberVO)session.getAttribute("user");
+
+        return "/home";
+    }
+
     //회원가입
     @GetMapping("/join")
     public String join(){

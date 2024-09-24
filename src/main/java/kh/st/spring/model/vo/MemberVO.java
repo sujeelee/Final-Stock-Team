@@ -28,5 +28,6 @@ public class MemberVO {
     private int mb_point; //(11자리)
     private byte mb_emailing;
     private String mb_account;
-    private boolean auto_login; // autoLogin, DB에는 없습니다.
+    private Date mb_cookie_limit; // DB에 datetime으로 저장되어 있습니다. (쿠키 만료기간)
+    private boolean auto_login; // autoLogin, DB에는 없습니다. (re 가 on 일 경우 true 값이 들어옵니다.)
 }

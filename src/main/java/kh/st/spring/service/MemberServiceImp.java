@@ -44,11 +44,22 @@ public class MemberServiceImp implements MemberService {
             return user;
         }
         return null;
-    }
-
+    }  
+    // id로 유저 찾기
     private MemberVO findById(String id) {
         MemberVO findUser = memberDao.findById(id);
         return findUser;//없으면 null 리턴
+    }
+
+
+    @Override
+    public void setUserCookie(MemberVO user) {
+        if (user == null) {
+            return;
+        }
+
+        memberDao.serUserCookie(user);
+        throw new UnsupportedOperationException("Unimplemented method 'setUserCookie'");
     }
 
     

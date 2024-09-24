@@ -5,4 +5,14 @@
     <select id="findById" resultType="kh.st.spring.model.vo.MemberVO">
     select * from member where mb_id = #{id}
     </select>
+
+    <update id="serUserCookie">
+    update member 
+    set 
+        mb_cookie = #{user.mb_cookie}, 
+        mb_cookie_limit = #{user.mb_cookie_limit}
+    where 
+        mb_id = #{user.mb_id}
+    </update>
+
 </mapper>
