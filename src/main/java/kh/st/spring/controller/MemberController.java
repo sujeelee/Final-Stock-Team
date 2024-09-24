@@ -1,5 +1,7 @@
 package kh.st.spring.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +45,12 @@ public class MemberController {
         if (user == null) {
             //실패
 
-            // fn loginFail(); //로그인 실패시 실패카운트 1 추가 해주어야합니다.
+            // fn loginFail(); //로그인 실패시 실패카운트 1 추가 해주어야합니다. >> MemberServiceImp에서 해결
             return "/member/login"; //다시 로그인 하세용
         } else {
             // 성공
 
-            // fn loginSuccess 로그인 성공시 실패 카운트를 0으로 초기화 해주어야합니다.
+            // fn loginSuccess 로그인 성공시 실패 카운트를 0으로 초기화 해주어야합니다. >> MemberServiceImp에서 해결
 
             //user_가 on 값을 가져온 경우 *(null일때 오류가 난다면 수정해 주어야 할)
             if (user_.getRe().equals("on")) {
@@ -65,10 +67,32 @@ public class MemberController {
     
     //로그아웃
     @GetMapping("/logout")
-    public String logout(Model mo, HttpSession session){
+    public String logout(Model mo, HttpSession session, HttpServletResponse response){
 
+        //세션에서 user 가져옵니다.
         MemberVO user = (MemberVO)session.getAttribute("user");
 
+        //로그인상태가 아닐 시
+        if (user == null) {
+
+            mo.addAttribute("msg", "로그인 상태가 아닙니다.");
+            mo.addAttribute("url", "/home");
+            return "/util/msg";
+        }
+
+        //로그인 쿠키가 있을 경우를 대비해서
+        if (user != null) {
+            //DB user cookie 정보를 null로 변경
+            user.setMb_cookie(null);
+            user.setMb_cookie_limit(null);
+            memberService.setUserCookie(user);
+
+            // AUTO_LOGIN 쿠키 삭제
+            deleteCookie(response , "AUTO_LOGIN");
+        }
+
+        //서버의 세션에서 user정보를 삭제
+        session.removeAttribute("user");
         return "/home";
     }
 
@@ -88,4 +112,17 @@ public class MemberController {
     	
     	return "/home";
     }
+
+
+    //쿠키 사용할 일이 많아지면 Cookie Manager class를 만들어서 사용하자
+    public void deleteCookie(HttpServletResponse response, String cookie_name){
+        //받아온 쿠키이름을 가진 쿠키를 값 null이 들어간 상태로 생성
+        Cookie cookie  = new Cookie(cookie_name, null);
+        //생성한 쿠키의 기간을 0으로 설정
+        cookie.setMaxAge(0);
+        //화면에 쿠키를 저장(기존의 쿠키와 같은 이름으로) -> 쿠키 값과, 기간이 0으로 되서 삭제됨
+        response.addCookie(cookie);
+    }
+
+
 }

@@ -40,9 +40,14 @@ public class MemberServiceImp implements MemberService {
         }
         //입력한 비번이, 인코딩 된 비번과 일치하는지 확인
         if (passwordEncoder.matches(user_.getPw(), user.getMb_password())) {
-            //다 일치하면
+            //다 일치하면 fail 횟수 0
+            
+            //유저 반환
             return user;
         }
+        //id는 있는데 비번이 불일치 되었을 시 fail + 1
+        
+
         return null;
     }  
     // id로 유저 찾기
@@ -51,7 +56,7 @@ public class MemberServiceImp implements MemberService {
         return findUser;//없으면 null 리턴
     }
 
-
+    // 쿠키정보만 수정합니다.
     @Override
     public void setUserCookie(MemberVO user) {
         if (user == null) {
@@ -59,7 +64,6 @@ public class MemberServiceImp implements MemberService {
         }
 
         memberDao.serUserCookie(user);
-        throw new UnsupportedOperationException("Unimplemented method 'setUserCookie'");
     }
 
     
