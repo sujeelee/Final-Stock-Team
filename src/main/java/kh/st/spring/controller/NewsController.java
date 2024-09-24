@@ -18,11 +18,8 @@ public class NewsController {
 	NewsService newsService;
 	
 	@GetMapping("/home")
-	public String list(Model model) {
-		log.info("newspaper/list:get");
-		// 뉴스페이퍼 리스트를 가져옴
-		
-		// 화면에 넘겨줌
+	public String home(Model model) {
+		log.info("newspaper/home:get");
 		
 		return "/newspaper/home";
 	}

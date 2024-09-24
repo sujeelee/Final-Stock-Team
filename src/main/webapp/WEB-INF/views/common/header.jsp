@@ -3,6 +3,6 @@
 <h1>헤더</h1>
 <ul class="nav">
   <li class="nav-item">
-    <a class="nav-link" href="<c:url value="newspaper/list/0" />"> 뉴스 게시판</a>
+    <a class="nav-link" href="<c:url value="newspaper/home" />"> 뉴스 게시판</a>
   </li>
 </ul>
