@@ -28,4 +28,5 @@ public class MemberVO {
     private int mb_point; //(11자리)
     private byte mb_emailing;
     private String mb_account;
+    private boolean auto_login; // autoLogin, DB에는 없습니다.
 }

@@ -31,11 +31,6 @@ public class MemberServiceImp implements MemberService {
         if (user_.getPw() == null || user_.getPw().trim().length() == 0) {
             return null;
         }
-        //re가 on이면 쿠키 제작
-        if (user_.getRe().equals("on")) {
-            // 후추
-            // fn : Cookie_mk(user_);
-        }
         //id 로 회원정보 DB에서 가져오기
         MemberVO user = findById(user_.getId());
 

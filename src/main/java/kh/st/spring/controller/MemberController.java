@@ -38,19 +38,27 @@ public class MemberController {
         //받은 정보를 DB에서 있는지 없는지 확인 함 
         MemberVO user = memberService.login(user_);
 
-        //
-        if (user != null) {
-            
+        if (user == null) {
+            //실패
+
+            // fn loginFail(); //로그인 실패시 실패카운트 1 추가 해주어야합니다.
+            return "/member/login"; //다시 로그인 하세용
         } else {
+            // 성공
 
+            // fn loginSuccess 로그인 성공시 실패 카운트를 0으로 초기화 해주어야합니다.
+
+            //user_가 on 값을 가져온 경우
+            if (user_.getRe().equals("on")) {
+                user.setAuto_login(true); //자동로그인 하겠습니다.
+            } else {
+                user.setAuto_login(false); //자동로그인 안하겠습니다.
+            }
+            
+            //postHandle에서 사용하기 위해 mo에 user 저장 (자동로그인을 위한 re값이 처리되어 있습니다.)
+            mo.addAttribute("user", user);
+            return "/home";
         }
-
-
-
-
-
-        log.info(user);
-        return "/home";
     }
     
     

@@ -9,12 +9,13 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import kh.st.spring.interceptor.MemberInterceptor;
+import kh.st.spring.interceptor.LoginIntercepter;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "kh.st.spring") 
 public class WebMvcConfig implements WebMvcConfigurer {
+
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -33,8 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 인터셉터 추가 및 URL 패턴 설정
-        registry.addInterceptor(new MemberInterceptor())
-                .addPathPatterns("/post/**")  // 모든 경로에 대해 인터셉터 적용
-                .excludePathPatterns("/post/list", "/post/detail"); //제외할 경로  // 특정 경로 제외
+        registry.addInterceptor(new LoginIntercepter())
+                .addPathPatterns("/member/login");  // /member/login 에서 할 일이 끝나면
     }
 }
