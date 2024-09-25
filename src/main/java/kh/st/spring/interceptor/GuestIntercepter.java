@@ -7,7 +7,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kh.st.spring.model.vo.MemberVO;
 
-public class GuestInterceptor extends HandlerInterceptorAdapter {
+public class GuestIntercepter extends HandlerInterceptorAdapter {
 
     // login 페이지와 join 페이지 입장 하였을 때
     @Override

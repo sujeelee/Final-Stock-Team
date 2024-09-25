@@ -1,10 +1,13 @@
 package kh.st.spring.service;
 
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kh.st.spring.dao.MemberDAO;
+import kh.st.spring.model.dto.JoinDTO;
 import kh.st.spring.model.dto.LoginDTO;
 import kh.st.spring.model.vo.MemberVO;
 
@@ -65,6 +68,64 @@ public class MemberServiceImp implements MemberService {
 
         memberDao.serUserCookie(user);
     }
+    @Override
+    public Boolean join(JoinDTO user_) {
+        //닉네임과 이름은 중복이 가능하다 가정함
+        if (user_ == null) {
+            return false;
+        }
+        //아이디 공백 체크
+        if (user_.getId() == null || user_.getId().trim().length() == 0) {
+            return false;
+        }
+        //아이디 Regex
+        if (!Check_Regex(user_.getId(), "^\\w{8,13}$")) {
+            return false;
+        }
+        //비밀번호 공백 체크
+        if (user_.getPw() == null || user_.getPw().trim().length() == 0) {
+            return false;
+        }
+        //비밀번호 Regex
+        if (!Check_Regex(user_.getPw(), "^[a-zA-Z0-9!@#$]{8,15}$")) {
+            return false;    
+        }
+        //중복 체크
+        MemberVO dup_id = findById(user_.getId());
+        if (dup_id != null) {
+            return false;
+        }
 
-    
+        //new user 생성
+        MemberVO New_User = new MemberVO();// <- 실질적으로 DB에 저장될 VO
+        New_User.setMb_id(user_.getId()); //아이디
+        New_User.setMb_password(passwordEncoder.encode(user_.getPw()));//인코딩해서 저장
+        New_User.setMb_name(user_.getName()); //이름
+        New_User.setMb_nick(user_.getNick()); //닉네임
+        New_User.setMb_hp(user_.getHp()); //전화번호
+        New_User.setMb_email(user_.getEmail());
+        New_User.setMb_birth(user_.getBirth());
+        if (user_.getEmailing().equals("on")) {
+            New_User.setMb_emailing((byte) 1);
+        } else {
+            New_User.setMb_emailing((byte) 0);
+        }
+        New_User.setMb_fail(0);
+        New_User.setMb_level(1);
+        New_User.setMb_point(50);
+
+        return memberDao.join(New_User);
+    }
+
+    //regex해주는 메소드 (str은 문자열, regex는 규칙입니다.)
+    private boolean Check_Regex(String str, String regex){
+        //자바 유딜 리젝스 페턴
+        if (str != null && Pattern.matches(regex, str)) {
+            return true;
+        }
+        return false;
+    }
+
+
+
 }

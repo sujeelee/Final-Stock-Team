@@ -13,5 +13,7 @@ public interface MemberDAO {
     void add_Fail_Number(@Param("id")String mb_id);
     
     void reset_Fail_Number(@Param("id")String mb_id);
+
+    Boolean join(@Param("user")MemberVO new_User);
     
 }

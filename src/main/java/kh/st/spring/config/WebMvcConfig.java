@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import kh.st.spring.interceptor.GuestInterceptor;
+import kh.st.spring.interceptor.GuestIntercepter;
 import kh.st.spring.interceptor.LoginIntercepter;
 
 @Configuration
@@ -37,7 +37,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         // 인터셉터 추가 및 URL 패턴 설정
         registry.addInterceptor(new LoginIntercepter())
                 .addPathPatterns("/member/login");  // /member/login에서 벗어날 때
-        registry.addInterceptor(new GuestInterceptor())
+        registry.addInterceptor(new GuestIntercepter())
                 .addPathPatterns("/member/login", "/member/join"); //유저가 해당 url에 들어갈 때
     }
 }
