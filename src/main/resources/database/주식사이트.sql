@@ -15,7 +15,7 @@ CREATE TABLE `member` (
 	`mb_zip`	int(11)	NULL,
 	`mb_addr`	varchar(255)	NULL,
 	`mb_addr2`	varchar(255)	NULL,
-	`mb_birth`	int(11)	NULL	COMMENT '양식 8 자리 숫자
+	`mb_birth`	DATE	NULL	COMMENT '양식 8 자리 숫자
 00000000
 ex) 19960908',
 	`mb_level`	int(11)	NULL	COMMENT '1LV~7LV 일반회원

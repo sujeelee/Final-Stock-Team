@@ -23,8 +23,6 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 	//실제 handle 이 수행된 후 실행 (로그인이 실행 된 후)
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		//Login_post와 순서 체크를 위한 디버깅 용 syso
-		System.out.println("post Login 인터셉터 입니다.");
 
 		//mo에 저장된 user을 가져옴 / model에 있는 user라는 무언가를 가져왔음
 		MemberVO user = (MemberVO)modelAndView.getModel().get("user");
@@ -32,6 +30,7 @@ public class LoginIntercepter extends HandlerInterceptorAdapter {
 		// mo에서 가져온 user가 null일 경우 (로그인 실패시)
 		if (user == null) {
 			return; //
+			
 		}
 		//user가 null이 아니면 세션에 저장해 주자 (user로 세션에 저장)
 		HttpSession session = request.getSession();
