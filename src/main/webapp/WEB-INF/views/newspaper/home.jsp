@@ -124,8 +124,8 @@
 	</style>
 </head>
 <body>
-	<h1>뉴스 게시판</h1>
 	<div class="container">
+		<h1>뉴스 게시판</h1>
 	    <div class="main_wrap">
 	        <!-- 날짜 선택 버튼 영역 -->
 	        <div class="news-date">

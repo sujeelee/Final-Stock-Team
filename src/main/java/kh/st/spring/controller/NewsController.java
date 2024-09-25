@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kh.st.spring.model.vo.NewsPaperVO;
 import kh.st.spring.model.vo.NewsVO;
 import kh.st.spring.service.NewsService;
 import lombok.extern.log4j.Log4j;
@@ -45,7 +46,10 @@ public class NewsController {
 	
 	@GetMapping("/list/{np_no}")
 	public String list(Model model, @PathVariable("np_no") int np_no) {
-		log.info(np_no);
+		log.info("newspaper/list:get");
+		NewsPaperVO newspaper = newsService.getNewsPaper(np_no);
+		log.info(newspaper);
+		model.addAttribute("newspaper",newspaper);
 		return "/newspaper/list";
 	}
 }

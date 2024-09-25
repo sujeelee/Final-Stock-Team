@@ -10,7 +10,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<h1>뉴스</h1>
-	
+	<div class="container">
+		<h1>${newspaper.np_name}</h1>
+	</div>
 </body>
 </html>

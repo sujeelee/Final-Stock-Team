@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.st.spring.dao.NewsDAO;
+import kh.st.spring.model.vo.NewsPaperVO;
 import kh.st.spring.model.vo.NewsVO;
 
 @Service
@@ -24,5 +25,10 @@ public class NewsServiceImp implements NewsService{
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
 		String formatDate = format.format(ne_datetime);
 		return newsDao.selectNewsList(formatDate);
+	}
+
+	@Override
+	public NewsPaperVO getNewsPaper(int np_no) {
+		return newsDao.selectNewsPaper(np_no);
 	} 
 }

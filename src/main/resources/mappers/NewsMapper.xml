@@ -13,5 +13,11 @@
 		GROUP BY
 			NEWSPAPER.NP_NO
 	</select>
-
+	<select id="selectNewsPaper" resultType="NewsPaperVO">
+		SELECT *
+		FROM
+			NEWSPAPER
+		WHERE
+			NEWSPAPER.NP_NO = #{np_no}
+	</select>
 </mapper>
