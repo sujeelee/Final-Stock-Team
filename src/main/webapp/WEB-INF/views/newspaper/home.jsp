@@ -177,6 +177,7 @@
 			function formatDate(date){
 				const year = date.getFullYear();
 				const month = (date.getMonth() + 1).toString().padStart(2, '0');
+				// 서버에 데이터 형식에 맞추기 위해 추가
 				const day = '01';
 				const yyyy_mm_dd = `\${year}-\${month}-\${day}`;
 				return yyyy_mm_dd;
