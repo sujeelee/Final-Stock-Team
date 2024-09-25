@@ -15,11 +15,13 @@ public class NewsVO {
 	private String ne_content;	// 뉴스 내용
 	private int ne_file;		// 첨부된 파일 개수
 	private String ne_mb_id;	// 작성 회원
-	private Date ne_dateTime;	// 작성일
+	private Date ne_datetime;	// 작성일
 	private Date ne_edit_date; 	// 수정일
 	private String ne_name; 	// 작성자(기자)
 	private int ne_happy;		// 기뻐요 누적
 	private int ne_angry;		// 화나요 누적
 	private int ne_absurd;		// 황당해요 누적
 	private int ne_sad;			// 슬퍼요 누적
+	
+	private String np_name; 	// 신문사 이름
 }
