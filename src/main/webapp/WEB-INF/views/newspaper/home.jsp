@@ -8,132 +8,120 @@
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-/* 전체 컨테이너 */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-}
+	<style type="text/css">
+		body{
+			background-color: #f4f6f8;
+		}
+	
+		.container {
+		    padding: 20px;
+		}
 
-/* 메인 랩 */
-.main_wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
+		.main_wrap {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    gap: 20px;
+		}
 
-/* 날짜 선택 버튼 */
-.news-date {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
+		.news-date {
+			width: 100%;
+		    height: 65px;
+		    background-color: #fff;
+		    border: 1px solid #ddd;
+		    border-radius: 15px;
+		    padding: 17px 0 15px;
+		    font-size: 1.2rem;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		}
+		
+		.date-btn {
+		    background-color: #fff;
+			border: none;
+		    padding: 8px 8px 8px 12px;
+		}
+		
+		#selected-date {
+		    margin: 0 16px;
+		    font-size: 19px;
+		    font-weight: bold;
+		    color: #1e1e23;
+		}
+		
+		.news-container{
+			width: 100%;
+		}
+		
+		.news-list {
+			width: 1100px;
+		    list-style: none;
+		    padding: 0;
+		    margin: 0 -14px -15px 0;
+		    display: grid;
+		    grid-template-columns: repeat(2, 1fr);
+		    gap: 10px;
+		}
+		
+		.news-box{
+			padding: 26px 26px 26px;
+			
+		}
 
-.date-btn {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.date-btn:hover {
-    background-color: #e0e0e0;
-}
-
-#selected-date {
-    margin: 0 20px;
-    font-weight: bold;
-}
-
-/* 뉴스 박스 */
-.news-container {
-    width: 100%;
-}
-
-.news-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-/* 뉴스 아이템 */
-.news-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: box-shadow 0.3s;
-    height: 238px;
-}
-
-.news-item:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.news-heading-box a {
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-    font-size: 1.1rem;
-}
-
-.news-content-box a {
-    font-size: 0.9rem;
-    color: black;
-    text-decoration: none;
-}
-
-.news-heading-box a:hover, .news-content-box a:hover {
-    color: #0078ff;
-}
-
-.news-box{
-	padding: 30px 30px 58px;
-}
-
-.news-heading-box{
-	padding: 16px 23px 0 0;
-}
-
-.news-content-box{
-	padding:12px 0 21px;
-}
-
-.news-content a {
-	/* 한 줄 자르기 */
-	display: inline-block;
-	width: 490px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	/* 여러 줄 자르기 추가 스타일 */
-	white-space: normal;
-	line-height: 1.2;
-	height: 3.6em;
-	font-size: 16px;
-	text-align: left;
-	word-wrap: break-word;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-}
-
-/* 반응형 디자인 */
-@media screen and (max-width: 768px) {
-    .news-list {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+		.news-item {
+		    background-color: #fff;
+		    border: 1px solid #ddd;
+		    border-radius: 15px;
+		    height: 220px;
+		}
+		
+		.news-heading-box a {
+		    font-weight: bold;
+		    font-size: 19px;
+		    color: black;
+		    text-decoration: none;
+		}
+		
+		.news-title a {
+		    font-size: 18px;
+		    color: black;
+		    text-decoration: none;
+		}
+		
+		.news-content a {
+		    font-size: 16px;
+		    color: #777;
+		    text-decoration: none;
+		}
+		
+		.news-heading-box{
+			padding: 16px 23px 0 0;
+		}
+		
+		.news-content-box{
+			padding:12px 0 21px;
+		}
+		
+		.news-content a {
+			/* 한 줄 자르기 */
+			display: inline-block;
+			width: 490px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			/* 여러 줄 자르기 추가 스타일 */
+			white-space: normal;
+			line-height: 1.2;
+			height: 3.6em;
+			font-size: 16px;
+			text-align: left;
+			word-wrap: break-word;
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+		}
+	</style>
 </head>
 <body>
 	<h1>뉴스 게시판</h1>
