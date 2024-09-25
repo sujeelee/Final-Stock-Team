@@ -19,7 +19,7 @@ public class MyBatisConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/community?useSSL=false&serverTimezone=Asia/Seoul");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/stockAndFund?useSSL=false&serverTimezone=Asia/Seoul");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         return dataSource;

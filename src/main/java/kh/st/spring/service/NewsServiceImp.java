@@ -1,5 +1,6 @@
 package kh.st.spring.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class NewsServiceImp implements NewsService{
 		if(ne_datetime == null) {
 			return null;
 		}
-		return newsDao.selectNewsList(ne_datetime);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+		String formatDate = format.format(ne_datetime);
+		return newsDao.selectNewsList(formatDate);
 	} 
 }

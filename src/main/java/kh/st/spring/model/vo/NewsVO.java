@@ -2,6 +2,8 @@ package kh.st.spring.model.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class NewsVO {
 
 	private int ne_no;			// 뉴스 기본키
-	private int ne_np_no;		// 신문사 기본코드
+	private int np_no;			// 신문사 기본코드
 	private String ne_title;	// 뉴스 제목
 	private String ne_content;	// 뉴스 내용
 	private int ne_file;		// 첨부된 파일 개수

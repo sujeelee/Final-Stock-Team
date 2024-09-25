@@ -81,14 +81,14 @@
 
 .news-heading-box a {
     font-weight: bold;
-    color: #333;
+    color: black;
     text-decoration: none;
     font-size: 1.1rem;
 }
 
 .news-content-box a {
     font-size: 0.9rem;
-    color: #666;
+    color: black;
     text-decoration: none;
 }
 
@@ -119,7 +119,7 @@
 	white-space: normal;
 	line-height: 1.2;
 	height: 3.6em;
-	font-size: 20px;
+	font-size: 16px;
 	text-align: left;
 	word-wrap: break-word;
 	display: -webkit-box;
@@ -154,8 +154,8 @@
 		                        <a href="#">신문사</a>
 		                    </div>
 		                    <div class="news-content-box">
-		                    	<div class="news-title">
-		                    		<a href="#" style="font-size: 20px;">헤드라인 제목</a>
+		                    	<div class="news-title mb-2">
+		                    		<a href="#" style="font-size: 18px;">헤드라인 제목</a>
 		                    	</div>
 		                    	<div class="news-content">
 			                        <a href="#">헤드라인 내용</a>                   		
@@ -241,16 +241,13 @@
 						<li class="news-item">
 		                	<div class="news-box">
 			                    <div class="news-heading-box">
-			                    	// newspaper/list/{np_num}으로 보내주면됨
-			                        <a href="#">\${news.np_name}</a>
+			                        <a href="<c:url value="/newspaper/list/\${news.np_no}" />">\${news.np_name}</a>
 			                    </div>
 			                    <div class="news-content-box">
-			                    	<div class="news-title">
-			                    		// newspaper/detail/{ne_num}으로 보내주면 됨
-			                    		<a href="#" style="font-size: 20px;">\${news.ne_title}</a>
+			                    	<div class="news-title mb-2">
+			                    		<a href="#" style="font-size: 18px;">\${news.ne_title}</a>
 			                    	</div>
 			                    	<div class="news-content">
-			                    	    // newspaper/detail/{ne_num}으로 보내주면 됨
 				                        <a href="#">\${news.ne_content}</a>                   		
 			                    	</div>
 			                    </div>
