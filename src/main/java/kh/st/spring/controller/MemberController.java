@@ -100,7 +100,7 @@ public class MemberController {
     
     
     @PostMapping("/join")
-    public String join_post(Model mo, JoinDTO user_) {
+    public String join_post(Model mo, JoinDTO user_, String ec) {
     	//LoginDTO를 나중에 MemberVO로 바꾸어 주세용
         //들어가야할 정보 id, pw, name, nick, hp, email, birth, emailing(on, null) 
     	System.out.println("회원가입시 정보 : " + user_);
@@ -110,7 +110,15 @@ public class MemberController {
         //디폴트 설정 fail = 0 , level = 1, point = 50
         
         //회원가입의 성공, 실패 여부(중복 확인 등은 화면에서 진행)
-        Boolean res = memberService.join(user_);
+        // !!! 회원가입시 이메일로 코드를 보내주어 email 인증을 하자! 보이는 input은 email말고 다른 name으로 넣어주고
+        // ec로 넣어주고 히든 > 이메일 체크가 되면 on, 아니면 null
+        // !!! 화면에 input hidden 을 email로 하고 인증이 되면 해당하는 이메일을 거기에 value값으로 넣어준 뒤 전송하는 방법을 사용하겠습니다.
+
+        Boolean res = false;
+        if (ec != null) {
+            res = memberService.join(user_);    
+        }
+ 
 
         if (res) {
             //회원가입이 성공일 시
@@ -133,5 +141,7 @@ public class MemberController {
         response.addCookie(cookie);
     }
 
+    //ajax 이메일 인증
 
+    //ajax 아이디 중복 확인
 }
