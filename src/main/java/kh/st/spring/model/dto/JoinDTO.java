@@ -25,7 +25,7 @@ public class JoinDTO {
     private int mb_level = 1;
     private int mb_point = 50;
 
-    
+    //디버깅용 toString
     @Override
     public String toString() {
         return "JoinDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nick=" + nick + ", hp=" + hp + ", email="

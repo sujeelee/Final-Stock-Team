@@ -23,7 +23,7 @@ public class MemberVO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date mb_birth; //Date로 일단 변경
     private int mb_level; //(11자리)
-    private Date mb_datetime;
+    private Date mb_datetime;   
     private Date mb_edit_date;
     private Date mb_stop_date;
     private Date mb_out_date;
